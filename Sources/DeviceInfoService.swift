@@ -88,9 +88,9 @@ public struct DeviceInfoService {
     public init() { }
     
     
-    // MARK: - Public properties
+    // MARK: - Public functions
     
-    func deviceInfoDictionary(token: String? = nil) -> [String: AnyObject] {
+    public func deviceInfoDictionary(token: String? = nil) -> [String: AnyObject] {
         return [ "device": [
             "data": [
                 "OS": [
