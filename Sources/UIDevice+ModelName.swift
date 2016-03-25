@@ -8,14 +8,14 @@
 
 import UIKit
 
-public extension UIDevice {
+extension UIDevice {
     
-    public var modelName: String {
+    var modelName: String {
         let identifier = modelIdentifier
         return DeviceList[identifier] ?? identifier
     }
     
-    public var modelIdentifier: String {
+    var modelIdentifier: String {
         var systemInfo = utsname()
         uname(&systemInfo)
         
