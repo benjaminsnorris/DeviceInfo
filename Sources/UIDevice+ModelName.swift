@@ -1,10 +1,9 @@
-//
-//  UIDevice+ModelName.swift
-//  falkor
-//
-//  Created by Ben Norris on 3/23/16.
-//  Copyright © 2016 OC Tanner. All rights reserved.
-//
+/*
+ |  _   ____   ____   _
+ | ⎛ |‾|  ⚈ |-| ⚈  |‾| ⎞
+ | ⎝ |  ‾‾‾‾| |‾‾‾‾  | ⎠
+ |  ‾        ‾        ‾
+ */
 
 import UIKit
 
