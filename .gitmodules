@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/VersionNumber"]
+	path = Carthage/Checkouts/VersionNumber
+	url = https://github.com/benjaminsnorris/VersionNumber.git
