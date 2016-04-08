@@ -21,7 +21,7 @@ public struct DeviceInfoService {
     }
     
     public var appBuildNumber: String {
-        return versionNumberService.currentVersionShort
+        return versionNumberService.buildNumber
     }
     
     public var appIdentifier: String {
@@ -33,7 +33,7 @@ public struct DeviceInfoService {
     }
     
     public var appVersion: String {
-        return versionNumberService.currentVersion
+        return versionNumberService.versionNumber
     }
     
     public var deviceName: String {
