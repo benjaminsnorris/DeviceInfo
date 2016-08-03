@@ -13,6 +13,8 @@
 		709C3E651CA5BB7A0058CCE8 /* VersionNumber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 709C3E641CA5BB7A0058CCE8 /* VersionNumber.framework */; };
 		709C3E6A1CA5BC090058CCE8 /* DeviceInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */; };
 		709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */; };
+		70C52BC91D52215400FD2B57 /* VersionNumberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BC81D52215400FD2B57 /* VersionNumberService.swift */; };
+		70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		709C3E671CA5BBE40058CCE8 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoService.swift; sourceTree = "<group>"; };
 		709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
+		70C52BC81D52215400FD2B57 /* VersionNumberService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumberService.swift; sourceTree = "<group>"; };
+		70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCountService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,10 +84,11 @@
 		709C3E4C1CA5BA890058CCE8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				709C3E4D1CA5BA890058CCE8 /* DeviceInfo.h */,
 				709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */,
+				70C52BC81D52215400FD2B57 /* VersionNumberService.swift */,
+				70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */,
 				709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */,
-				709C3E4F1CA5BA890058CCE8 /* Info.plist */,
+				70C52BCC1D5221CA00FD2B57 /* Supporting Files */,
 				709C3E661CA5BB7F0058CCE8 /* Frameworks */,
 			);
 			path = Sources;
@@ -105,6 +110,15 @@
 			);
 			name = Frameworks;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		70C52BCC1D5221CA00FD2B57 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				709C3E4D1CA5BA890058CCE8 /* DeviceInfo.h */,
+				709C3E4F1CA5BA890058CCE8 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,7 +229,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */,
 				709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */,
+				70C52BC91D52215400FD2B57 /* VersionNumberService.swift in Sources */,
 				709C3E6A1CA5BC090058CCE8 /* DeviceInfoService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

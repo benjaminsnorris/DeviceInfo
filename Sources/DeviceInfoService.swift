@@ -6,7 +6,6 @@
  */
 
 import UIKit
-import VersionNumber
 
 public struct DeviceInfoService {
     
