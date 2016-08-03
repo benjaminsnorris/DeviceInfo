@@ -9,11 +9,13 @@ import UIKit
 
 extension UIDevice {
     
+    /// User-facing device name, e.g. "iPhone 6S Plus"
     var modelName: String {
         let identifier = modelIdentifier
         return DeviceList[identifier] ?? identifier
     }
     
+    /// Raw identifier of device, e.g. "iPhone8,2"
     var modelIdentifier: String {
         var systemInfo = utsname()
         uname(&systemInfo)

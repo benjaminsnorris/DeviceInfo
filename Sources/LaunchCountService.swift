@@ -11,10 +11,12 @@ public struct LaunchCountService {
     
     // MARK: - Public properties
     
+    /// Number of launches recorded on device for current app version ("1.0.1")
     public var launchCountForCurrentVersion: Int {
         return launchCount(versionNumberService.versionNumber)
     }
     
+    /// Number of launches recorded on device across all app versions
     public var launchCountForAllVersions: Int {
         guard let versionCounts = launchCountsForAllVersions() else { return 0 }
         guard versionCounts.count > 0 else { return 0 }
@@ -37,6 +39,10 @@ public struct LaunchCountService {
     
     // MARK: - Initializers
     
+    /**
+     - parameter sharedAppGroupContainer: Optional identifier to use a shared
+        `NSUserDefaults` suite for storing launch information.
+     */
     public init(sharedAppGroupContainer: String? = nil) {
         self.sharedAppGroupContainer = sharedAppGroupContainer
     }
@@ -44,6 +50,7 @@ public struct LaunchCountService {
     
     // MARK: - Public functions
     
+    /// Increment launch count for current app version ("1.0.1")
     public func incrementLaunchCountForCurrentVersion() -> Bool {
         return incrementLaunchCount(versionNumberService.versionNumber)
     }
