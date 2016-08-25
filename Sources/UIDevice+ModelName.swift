@@ -25,7 +25,7 @@ extension UIDevice {
         var identifier = ""
         
         for child in mirror.children where child.value as? Int8 != 0 {
-            identifier.append(UnicodeScalar(UInt8(child.value as! Int8)))
+            identifier.append(UnicodeScalarType(UInt8(child.value as! Int8)))
         }
 
         return identifier

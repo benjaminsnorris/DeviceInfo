@@ -34,7 +34,7 @@ public struct LaunchCountService {
     
     // MARK: - Constants
     
-    private let versionsKey = "versions"
+    static fileprivate let versionsKey = "versions"
     
     
     // MARK: - Initializers
@@ -69,7 +69,7 @@ private extension LaunchCountService {
         } else {
             defaults = UserDefaults.standard
         }
-        guard let versionsCounts = defaults.object(forKey: versionsKey) as? [String: Int] else { return nil }
+        guard let versionsCounts = defaults.object(forKey: LaunchCountService.versionsKey) as? [String: Int] else { return nil }
         return versionsCounts
     }
     
@@ -97,7 +97,7 @@ private extension LaunchCountService {
             }
         }
         updatedVersionsCounts[version] = updatedCount
-        defaults.set(updatedVersionsCounts, forKey: versionsKey)
+        defaults.set(updatedVersionsCounts, forKey: LaunchCountService.versionsKey)
         return true
     }
     

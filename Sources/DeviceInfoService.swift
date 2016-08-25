@@ -176,7 +176,7 @@ public extension DeviceInfoServiceContract {
 
         ```
      */
-    public func deviceInfoDictionary(_ token: String? = nil) -> [String: AnyObject] {
+    public func deviceInfoDictionary(_ token: String? = nil) -> [String: Any] {
         return [ "device": [
             "data": [
                 "OS": [
