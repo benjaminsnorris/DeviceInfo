@@ -13,7 +13,7 @@ public struct LaunchCountService {
     
     /// Number of launches recorded on device for current app version ("1.0.1")
     public var launchCountForCurrentVersion: Int {
-        return launchCount(versionNumberService.versionNumber)
+        return launchCount(deviceInfoService.appVersion)
     }
     
     /// Number of launches recorded on device across all app versions
@@ -29,7 +29,7 @@ public struct LaunchCountService {
     // MARK: - Internal properties
     
     let sharedAppGroupContainer: String?
-    var versionNumberService = VersionNumberService()
+    var deviceInfoService: DeviceInfoServiceContract = DeviceInfoService()
     
     
     // MARK: - Constants
@@ -52,7 +52,7 @@ public struct LaunchCountService {
     
     /// Increment launch count for current app version ("1.0.1")
     public func incrementLaunchCountForCurrentVersion() -> Bool {
-        return incrementLaunchCount(versionNumberService.versionNumber)
+        return incrementLaunchCount(deviceInfoService.appVersion)
     }
 
 }

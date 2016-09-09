@@ -12,7 +12,6 @@
 		709C3E5A1CA5BA890058CCE8 /* DeviceInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E591CA5BA890058CCE8 /* DeviceInfoTests.swift */; };
 		709C3E6A1CA5BC090058CCE8 /* DeviceInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */; };
 		709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */; };
-		70C52BC91D52215400FD2B57 /* VersionNumberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BC81D52215400FD2B57 /* VersionNumberService.swift */; };
 		70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 		709C3E671CA5BBE40058CCE8 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoService.swift; sourceTree = "<group>"; };
 		709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
-		70C52BC81D52215400FD2B57 /* VersionNumberService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumberService.swift; sourceTree = "<group>"; };
 		70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCountService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */,
-				70C52BC81D52215400FD2B57 /* VersionNumberService.swift */,
 				70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */,
 				709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */,
 				70C52BCC1D5221CA00FD2B57 /* Supporting Files */,
@@ -218,7 +215,6 @@
 			files = (
 				70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */,
 				709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */,
-				70C52BC91D52215400FD2B57 /* VersionNumberService.swift in Sources */,
 				709C3E6A1CA5BC090058CCE8 /* DeviceInfoService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
