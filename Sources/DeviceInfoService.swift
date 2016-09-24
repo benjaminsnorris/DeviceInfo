@@ -7,6 +7,8 @@
 
 import UIKit
 
+import UIKit
+
 public protocol DeviceInfoServiceContract {
     /// e.g. "iPhone OS"
     var osName: String { get }
@@ -56,7 +58,7 @@ public protocol DeviceInfoServiceContract {
      
      ```
      */
-    func deviceInfoDictionary(token: String?) -> [String: AnyObject]
+    func deviceInfoDictionary(_ token: String?) -> [String:Any]
 }
 
 
@@ -74,7 +76,7 @@ public extension DeviceInfoServiceContract {
     
     /// e.g. "142" or "1.0.1.142"
     public var appBuildNumber: String {
-        guard let version = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String else { return "Unknown" }
+        guard let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String else { return "Unknown" }
         return version
     }
 
@@ -90,13 +92,13 @@ public extension DeviceInfoServiceContract {
     
     /// e.g. "1.0.1"
     public var appVersion: String {
-        guard let shortVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String else { return "Unknown" }
+        guard let shortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "Unknown" }
         return shortVersion
     }
     
     /// e.g. "Lister version 1.0.1 (142)"
     public var appNameWithVersion: String {
-        guard let appName = NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String else { return "Unnamed App" }
+        guard let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String else { return "Unnamed App" }
         return "\(appName) version \(appVersion) (\(appBuildNumber))"
     }
     
@@ -150,33 +152,7 @@ public extension DeviceInfoServiceContract {
         return Calendar.current.timeZone.identifier
     }
     
-
-    // MARK: - Internal properties
-    
-    var versionNumberService = VersionNumberService()
-    
-    
-    // MARK: - Initializers
-    
-    public init() { }
-    
-    
-    // MARK: - Public functions
-    
-    /**
-     Formatted dictionary with device information used in connection
-     with registering for remote notifications and capturing device
-     information
-     
-     - parameter token: Optional string to include in dictionary, usually
-        processed from device token data, e.g.
-        ```
-        let setToTrim = NSCharacterSet( charactersInString: "<>" )
-        let tokenString = deviceToken.description.stringByTrimmingCharactersInSet(setToTrim).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-
-        ```
-     */
-    public func deviceInfoDictionary(_ token: String? = nil) -> [String: Any] {
+    public func deviceInfoDictionary(_ token: String?) -> [String:Any] {
         return [ "device": [
             "data": [
                 "OS": [
