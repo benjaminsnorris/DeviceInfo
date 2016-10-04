@@ -1,7 +1,7 @@
 /*
  |  _   ____   ____   _
- | ⎛ |‾|  ⚈ |-| ⚈  |‾| ⎞
- | ⎝ |  ‾‾‾‾| |‾‾‾‾  | ⎠
+ | | |‾|  ⚈ |-| ⚈  |‾| |
+ | | |  ‾‾‾‾| |‾‾‾‾  | |
  |  ‾        ‾        ‾
  */
 
@@ -33,9 +33,12 @@ extension UIDevice {
     
 }
 
+// https://www.theiphonewiki.com/wiki/Models
 private let DeviceList = [
     /* iPod 5 */
     "iPod5,1": "iPod Touch 5",
+    /* iPod 6 */
+    "iPod7,1": "iPod Touch 6",
     /* iPhone 4 */
     "iPhone3,1":  "iPhone 4", "iPhone3,2": "iPhone 4", "iPhone3,3": "iPhone 4",
     /* iPhone 4S */
@@ -54,6 +57,12 @@ private let DeviceList = [
     "iPhone8,1": "iPhone 6S",
     /* iPhone 6S Plus */
     "iPhone8,2": "iPhone 6S Plus",
+    /* iPhone SE */
+    "iPhone8,4": "iPhone SE",
+    /* iPhone 7 */
+    "iPhone9,1": "iPhone 7", "iPhone9,3": "iPhone 7",
+    /* iPhone 7 Plus */
+    "iPhone9,2": "iPhone 7 Plus", "iPhone9,4": "iPhone 7 Plus",
     /* iPad 2 */
     "iPad2,1": "iPad 2", "iPad2,2": "iPad 2", "iPad2,3": "iPad 2", "iPad2,4": "iPad 2",
     /* iPad 3 */
@@ -70,8 +79,12 @@ private let DeviceList = [
     "iPad4,4": "iPad Mini", "iPad4,5": "iPad Mini", "iPad4,6": "iPad Mini 2",
     /* iPad Mini 3 */
     "iPad4,7": "iPad Mini", "iPad4,8": "iPad Mini", "iPad4,9": "iPad Mini 3",
-    /* iPad Pro */
-    "iPad6,7": "iPad Pro", "iPad6,8": "iPad Pro",
+    /* iPad Mini 4 */
+    "iPad5,1": "iPad Mini", "iPad5,2": "iPad Mini",
+    /* iPad Pro (12.9 inch) */
+    "iPad6,7": "iPad Pro (12.9 inch)", "iPad6,8": "iPad Pro (12.9 inch)",
+    /* iPad Pro (9.7 inch) */
+    "iPad6,3": "iPad Pro (9.7 inch)", "iPad6,4": "iPad Pro (9.7 inch)",
     /* Simulator */
     "x86_64": "Simulator", "i386": "Simulator"
 ]
