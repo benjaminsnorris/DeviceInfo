@@ -21,7 +21,7 @@ public struct LaunchCountService {
         guard let versionCounts = launchCountsForAllVersions() else { return 0 }
         guard versionCounts.count > 0 else { return 0 }
         let allCounts = versionCounts.flatMap { $0.1 }
-        let total = allCounts.reduce(0, combine: +)
+        let total = allCounts.reduce(0, +)
         return total
     }
     
@@ -34,7 +34,7 @@ public struct LaunchCountService {
     
     // MARK: - Constants
     
-    private let versionsKey = "versions"
+    static fileprivate let versionsKey = "versions"
     
     
     // MARK: - Initializers
@@ -63,17 +63,17 @@ public struct LaunchCountService {
 private extension LaunchCountService {
     
     func launchCountsForAllVersions() -> [String: Int]? {
-        let defaults: NSUserDefaults
-        if let sharedDefaults = NSUserDefaults(suiteName: sharedAppGroupContainer) {
+        let defaults: UserDefaults
+        if let sharedDefaults = UserDefaults(suiteName: sharedAppGroupContainer) {
             defaults = sharedDefaults
         } else {
-            defaults = NSUserDefaults.standardUserDefaults()
+            defaults = UserDefaults.standard
         }
-        guard let versionsCounts = defaults.objectForKey(versionsKey) as? [String: Int] else { return nil }
+        guard let versionsCounts = defaults.object(forKey: LaunchCountService.versionsKey) as? [String: Int] else { return nil }
         return versionsCounts
     }
     
-    func launchCount(version: String) -> Int {
+    func launchCount(_ version: String) -> Int {
         guard let versionsCounts = launchCountsForAllVersions() else { return 0 }
         if let count = versionsCounts[version] {
             return count
@@ -81,12 +81,12 @@ private extension LaunchCountService {
         return 0
     }
     
-    func incrementLaunchCount(version: String) -> Bool {
-        let defaults: NSUserDefaults
-        if let sharedDefaults = NSUserDefaults(suiteName: sharedAppGroupContainer) {
+    func incrementLaunchCount(_ version: String) -> Bool {
+        let defaults: UserDefaults
+        if let sharedDefaults = UserDefaults(suiteName: sharedAppGroupContainer) {
             defaults = sharedDefaults
         } else {
-            defaults = NSUserDefaults.standardUserDefaults()
+            defaults = UserDefaults.standard
         }
         var updatedCount = 1
         var updatedVersionsCounts = [String: Int]()
@@ -97,7 +97,7 @@ private extension LaunchCountService {
             }
         }
         updatedVersionsCounts[version] = updatedCount
-        defaults.setObject(updatedVersionsCounts, forKey: versionsKey)
+        defaults.set(updatedVersionsCounts, forKey: LaunchCountService.versionsKey)
         return true
     }
     
