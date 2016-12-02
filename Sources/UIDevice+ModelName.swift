@@ -14,20 +14,17 @@ extension UIDevice {
         let identifier = modelIdentifier
         return DeviceList[identifier] ?? identifier
     }
-    
+
     /// Raw identifier of device, e.g. "iPhone8,2"
     var modelIdentifier: String {
         var systemInfo = utsname()
         uname(&systemInfo)
+        let mirror = Mirror(reflecting: systemInfo.machine)
         
-        let machine = systemInfo.machine
-        let mirror = Mirror(reflecting: machine)  // Swift 2.0
-        var identifier = ""
-        
-        for child in mirror.children where child.value as? Int8 != 0 {
-            identifier.append(UnicodeScalarType(UInt8(child.value as! Int8)))
+        let identifier = mirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
         }
-
         return identifier
     }
     
