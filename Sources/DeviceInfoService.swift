@@ -22,11 +22,13 @@ public protocol DeviceInfoServiceContract {
     var appVersion: String { get }
     /// e.g. "Lister version 1.0.1 (142)"
     var appNameWithVersion: String { get }
-    /// User-facing name of device, e.g. "iPhone 6S Plus"
-    var deviceName: String { get }
-    /// Identifier of device model, e.g. "iPhone8,2"
+    /// User-facing display name of device, e.g. "John's iPhone"
+    var deviceDisplayName: String { get }
+    /// User-facing model name of device, e.g. "iPhone 6S Plus"
+    var deviceModelName: String { get }
+    /// Type of device, e.g. "iPhone"
     var deviceType: String { get }
-    /// Identifier of device model, e.g. "iPhone8,2" (Same as `deviceType`)
+    /// Identifier of device model, e.g. "iPhone8,2"
     var deviceVersion: String { get }
     /// Unique identifier of device, same across apps from a single vendor
     var deviceIdentifier: String { get }
@@ -34,6 +36,8 @@ public protocol DeviceInfoServiceContract {
     var language: String { get }
     /// Identifier of the user's current locale, e.g. "en_US"
     var locale: String { get }
+    /// Identifier of the user's current translation, e.g. "en"
+    var translation: String { get }
     /// Pixel density of device screen, e.g. "3.0"
     var screenDensity: CGFloat { get }
     /// Height of screen in points, e.g. "736.0"
@@ -48,7 +52,10 @@ public protocol DeviceInfoServiceContract {
      with registering for remote notifications and capturing device
      information
      
-     - parameter token: Optional string to include in dictionary, usually
+     - Parameters:
+        - latitude: Optional if obtained from user
+        - longitude: Optional if obtained from user
+        - token: Optional string to include in dictionary, usually
      processed from device token data, e.g.
      ```
      let setToTrim = NSCharacterSet( charactersInString: "<>" )
@@ -56,7 +63,7 @@ public protocol DeviceInfoServiceContract {
      
      ```
      */
-    func deviceInfoDictionary(_ token: String?) -> [String:Any]
+    func deviceInfoDictionary(with token: String?, latitude: Double?, longitude: Double?) -> [String: Any]
 }
 
 
@@ -100,14 +107,30 @@ public extension DeviceInfoServiceContract {
         return "\(appName) version \(appVersion) (\(appBuildNumber))"
     }
     
+    /// User-facing display name of device, e.g. "John's iPhone"
+    var deviceDisplayName: String {
+        return UIDevice.current.name
+    }
+
     /// User-facing name of device, e.g. "iPhone 6S Plus"
-    public var deviceName: String {
+    public var deviceModelName: String {
         return UIDevice.current.modelName
     }
     
     /// Identifier of device model, e.g. "iPhone8,2"
     public var deviceType: String {
-        return UIDevice.current.modelIdentifier
+        switch UIDevice.current.userInterfaceIdiom {
+        case .unspecified:
+            return "Unspecified"
+        case .phone:
+            return "iPhone"
+        case .pad:
+            return "iPad"
+        case .tv:
+            return "Apple TV"
+        case .carPlay:
+            return "CarPlay"
+        }
     }
     
     /// Identifier of device model, e.g. "iPhone8,2" (Same as `deviceType`)
@@ -130,6 +153,11 @@ public extension DeviceInfoServiceContract {
         return Locale.current.identifier
     }
     
+    /// Identifier of the user's current translation, e.g. "en"
+    var translation: String {
+        return Bundle.main.preferredLocalizations.first ?? ""
+    }
+    
     /// Pixel density of device screen, e.g. "3.0"
     public var screenDensity: CGFloat {
         return UIScreen.main.scale
@@ -150,36 +178,41 @@ public extension DeviceInfoServiceContract {
         return Calendar.current.timeZone.identifier
     }
     
-    public func deviceInfoDictionary(_ token: String?) -> [String:Any] {
-        return [ "device": [
-            "data": [
-                "OS": [
-                    "name": osName,
-                    "version": osVersion
-                ],
-                "app": [
-                    "build": appBuildNumber,
-                    "identifier": appIdentifier,
-                    "name": appName,
-                    "version": appVersion
-                ],
-                "hardware": [
-                    "name": deviceName,
-                    "type": deviceType,
-                    "version": deviceVersion,
-                    "identifier": deviceIdentifier
-                ],
+    public func deviceInfoDictionary(_ token: String?, latitude: Double? = nil, longitude: Double? = nil) -> [String: Any] {
+        return [
+            "name": deviceDisplayName,
+            "locale": [
+                "translation": translation,
                 "language": language,
-                "locale": locale,
-                "screen_metrics": [
-                    "density": screenDensity,
-                    "h": screenHeight,
-                    "w": screenWidth
-                ],
+                "identifier": locale,
+            ],
+            "location": [
+                "lat": latitude ?? NSNull(),
+                "lng": longitude ?? NSNull(),
                 "timezone": timezone,
-                "token": token ?? ""
-            ]
-            ]
+            ],
+            "hardware": [
+                "name": deviceModelName,
+                "version": appVersion,
+                "type": deviceType,
+                "identifier": deviceIdentifier,
+            ],
+            "OS": [
+                "name": osName,
+                "version": osVersion,
+            ],
+            "app": [
+                "name": appName,
+                "version": appVersion,
+                "build": appBuildNumber,
+                "identifier": appIdentifier,
+                "token": token ?? NSNull(),
+            ],
+            "screen_metrics": [
+                "density": screenDensity,
+                "h": screenHeight,
+                "w": screenWidth,
+            ],
         ]
     }
     
