@@ -3,7 +3,7 @@
  | | |‾|  ⚈ |-| ⚈  |‾| |
  | | |  ‾‾‾‾| |‾‾‾‾  | |
  |  ‾        ‾        ‾
-*/
+ */
 
 import UIKit
 
@@ -53,9 +53,9 @@ public protocol DeviceInfoServiceContract {
      information
      
      - Parameters:
-        - latitude: Optional if obtained from user
-        - longitude: Optional if obtained from user
-        - token: Optional string to include in dictionary, usually
+     - latitude: Optional if obtained from user
+     - longitude: Optional if obtained from user
+     - token: Optional string to include in dictionary, usually
      processed from device token data, e.g.
      ```
      let setToTrim = NSCharacterSet( charactersInString: "<>" )
@@ -84,7 +84,7 @@ public extension DeviceInfoServiceContract {
         guard let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String else { return "Unknown" }
         return version
     }
-
+    
     /// e.g. "com.example.app"
     public var appIdentifier: String {
         return Bundle.main.bundleIdentifier!
@@ -111,7 +111,7 @@ public extension DeviceInfoServiceContract {
     var deviceDisplayName: String {
         return UIDevice.current.name
     }
-
+    
     /// User-facing name of device, e.g. "iPhone 6S Plus"
     public var deviceModelName: String {
         return UIDevice.current.modelName
@@ -178,42 +178,55 @@ public extension DeviceInfoServiceContract {
         return Calendar.current.timeZone.identifier
     }
     
-    public func deviceInfoDictionary(_ token: String?, latitude: Double? = nil, longitude: Double? = nil) -> [String: Any] {
-        return [
+    public func deviceInfoDictionary(with token: String?, latitude: Double? = nil, longitude: Double? = nil) -> [String: Any] {
+        var object: [String: Any] = [
             "name": deviceDisplayName,
-            "locale": [
-                "translation": translation,
-                "language": language,
-                "identifier": locale,
-            ],
-            "location": [
-                "lat": latitude ?? NSNull(),
-                "lng": longitude ?? NSNull(),
-                "timezone": timezone,
-            ],
-            "hardware": [
-                "name": deviceModelName,
-                "version": appVersion,
-                "type": deviceType,
-                "identifier": deviceIdentifier,
-            ],
-            "OS": [
-                "name": osName,
-                "version": osVersion,
-            ],
-            "app": [
-                "name": appName,
-                "version": appVersion,
-                "build": appBuildNumber,
-                "identifier": appIdentifier,
-                "token": token ?? NSNull(),
-            ],
-            "screen_metrics": [
-                "density": screenDensity,
-                "h": screenHeight,
-                "w": screenWidth,
-            ],
         ]
+        var locationObject: [String: Any] = [
+            "timezone": timezone,
+        ]
+        if let latitude = latitude {
+            locationObject["lat"] = latitude
+        }
+        if let longitude = longitude {
+            locationObject["lng"] = longitude
+        }
+        object["location"] = locationObject
+        
+        object["locale"] = [
+            "translation": translation,
+            "language": language,
+            "identifier": locale,
+        ]
+        object["hardware"] = [
+            "name": deviceModelName,
+            "version": appVersion,
+            "type": deviceType,
+            "identifier": deviceIdentifier,
+        ]
+        object["OS"] = [
+            "name": osName,
+            "version": osVersion,
+        ]
+        
+        var appObject: [String: Any] = [
+            "name": appName,
+            "version": appVersion,
+            "build": appBuildNumber,
+            "identifier": appIdentifier,
+        ]
+        if let token = token {
+            appObject["token"] = token
+        }
+        object["app"] = appObject
+        
+        object["screen_metrics"] = [
+            "density": screenDensity,
+            "h": screenHeight,
+            "w": screenWidth,
+        ]
+        
+        return object
     }
     
 }
@@ -222,5 +235,5 @@ public extension DeviceInfoServiceContract {
 public struct DeviceInfoService: DeviceInfoServiceContract {
     
     public init() { }
-
+    
 }
