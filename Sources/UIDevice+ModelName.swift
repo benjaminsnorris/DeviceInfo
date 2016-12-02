@@ -72,7 +72,7 @@ private let DeviceList = [
     /* iPad Air */
     "iPad4,1": "iPad Air", "iPad4,2": "iPad Air", "iPad4,3": "iPad Air",
     /* iPad Air 2 */
-    "iPad5,1": "iPad Air 2", "iPad5,3": "iPad Air 2", "iPad5,4": "iPad Air 2",
+    "iPad5,3": "iPad Air 2", "iPad5,4": "iPad Air 2",
     /* iPad Mini */
     "iPad2,5": "iPad Mini", "iPad2,6": "iPad Mini", "iPad2,7": "iPad Mini",
     /* iPad Mini 2 */
