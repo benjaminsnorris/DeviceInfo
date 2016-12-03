@@ -8,61 +8,27 @@
 import UIKit
 
 public protocol DeviceInfoServiceContract {
-    /// e.g. "iPhone OS"
     var osName: String { get }
-    /// e.g. "9.3"
     var osVersion: String { get }
-    /// e.g. "142" or "1.0.1.142"
     var appBuildNumber: String { get }
-    /// e.g. "com.example.app"
     var appIdentifier: String { get }
-    /// e.g. "Lister"
     var appName: String { get }
-    /// e.g. "1.0.1"
     var appVersion: String { get }
-    /// e.g. "Lister version 1.0.1 (142)"
     var appNameWithVersion: String { get }
-    /// User-facing display name of device, e.g. "John's iPhone"
     var deviceDisplayName: String { get }
-    /// User-facing model name of device, e.g. "iPhone 6S Plus"
     var deviceModelName: String { get }
-    /// Type of device, e.g. "iPhone"
     var deviceType: String { get }
-    /// Identifier of device model, e.g. "iPhone8,2"
     var deviceVersion: String { get }
-    /// Unique identifier of device, same across apps from a single vendor
     var deviceIdentifier: String { get }
-    /// The first preferred language of the user, e.g. "en-US"
     var language: String { get }
-    /// Identifier of the user's current locale, e.g. "en_US"
     var locale: String { get }
-    /// Identifier of the user's current translation, e.g. "en"
     var translation: String { get }
-    /// Pixel density of device screen, e.g. "3.0"
     var screenDensity: CGFloat { get }
-    /// Height of screen in points, e.g. "736.0"
     var screenHeight: CGFloat { get }
-    /// Width of screen in points, e.g. "414.0"
     var screenWidth: CGFloat { get }
-    /// Name of user's current time zone, e.g. "American/Denver"
     var timezone: String { get }
     
-    /**
-     Formatted dictionary with device information used in connection
-     with registering for remote notifications and capturing device
-     information
-     
-     - Parameters:
-     - latitude: Optional if obtained from user
-     - longitude: Optional if obtained from user
-     - token: Optional string to include in dictionary, usually
-     processed from device token data, e.g.
-     ```
-     let setToTrim = NSCharacterSet( charactersInString: "<>" )
-     let tokenString = deviceToken.description.stringByTrimmingCharactersInSet(setToTrim).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-     
-     ```
-     */
+    func formattedToken(from deviceToken: Data) -> String
     func deviceInfoDictionary(with token: String?, latitude: Double?, longitude: Double?, nullForMissingValues: Bool) -> [String: Any]
 }
 
@@ -178,6 +144,30 @@ public extension DeviceInfoServiceContract {
         return Calendar.current.timeZone.identifier
     }
     
+    /**
+     Formatted token from device token received when registering for
+     remote notifications.
+     
+     - parameter deviceToken: Data object received when registering for
+        remote notifications
+     
+     - returns: Formatted token string
+     */
+    public func formattedToken(from deviceToken: Data) -> String {
+        return deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+    }
+    
+    /**
+     Formatted dictionary with device information used in connection
+     with registering for remote notifications and capturing device
+     information
+     
+     - Parameters:
+         - token: Optional string to include in dictionary, usually processed from device token data
+         - latitude: Optional if obtained from user
+         - longitude: Optional if obtained from user
+         - nullForMissingValues: Flag for missing values to omit or set as `NSNull()`
+     */
     public func deviceInfoDictionary(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false) -> [String: Any] {
         var object: [String: Any] = [
             "name": deviceDisplayName,
