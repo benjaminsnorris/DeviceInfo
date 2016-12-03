@@ -63,7 +63,7 @@ public protocol DeviceInfoServiceContract {
      
      ```
      */
-    func deviceInfoDictionary(with token: String?, latitude: Double?, longitude: Double?) -> [String: Any]
+    func deviceInfoDictionary(with token: String?, latitude: Double?, longitude: Double?, nullForMissingValues: Bool) -> [String: Any]
 }
 
 
@@ -178,7 +178,7 @@ public extension DeviceInfoServiceContract {
         return Calendar.current.timeZone.identifier
     }
     
-    public func deviceInfoDictionary(with token: String?, latitude: Double? = nil, longitude: Double? = nil) -> [String: Any] {
+    public func deviceInfoDictionary(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false) -> [String: Any] {
         var object: [String: Any] = [
             "name": deviceDisplayName,
         ]
@@ -187,9 +187,13 @@ public extension DeviceInfoServiceContract {
         ]
         if let latitude = latitude {
             locationObject["lat"] = latitude
+        } else if nullForMissingValues {
+            locationObject["lat"] = NSNull()
         }
         if let longitude = longitude {
             locationObject["lng"] = longitude
+        } else if nullForMissingValues {
+            locationObject["lng"] = NSNull()
         }
         object["location"] = locationObject
         
@@ -200,7 +204,7 @@ public extension DeviceInfoServiceContract {
         ]
         object["hardware"] = [
             "name": deviceModelName,
-            "version": appVersion,
+            "version": deviceVersion,
             "type": deviceType,
             "identifier": deviceIdentifier,
         ]
@@ -217,6 +221,8 @@ public extension DeviceInfoServiceContract {
         ]
         if let token = token {
             appObject["token"] = token
+        } else if nullForMissingValues {
+            appObject["token"] = NSNull()
         }
         object["app"] = appObject
         
