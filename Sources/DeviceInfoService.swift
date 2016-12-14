@@ -6,6 +6,7 @@
  */
 
 import UIKit
+import UserNotifications
 
 public extension DeviceInfoServiceContract {
     
@@ -197,6 +198,25 @@ public extension DeviceInfoServiceContract {
         
         return object
     }
+
+    @available(iOSApplicationExtension 10.0, *)
+    public func deviceAndSettingsInfo(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false, completionHandler: @escaping (_ infoDictionary: [String: Any]) -> ()) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            var info = self.deviceInfoDictionary(with: token, latitude: latitude, longitude: longitude, nullForMissingValues: nullForMissingValues)
+            let notificationsObject: [String: Any] = [
+                "authorization": settings.authorizationStatus.key,
+                "notificationCenter": settings.notificationCenterSetting.key,
+                "lockScreen": settings.lockScreenSetting.key,
+                "carPlay": settings.carPlaySetting.key,
+                "alert": settings.alertSetting.key,
+                "alertStyle": settings.alertStyle.key,
+                "badge": settings.badgeSetting.key,
+                "sound": settings.soundSetting.key
+            ]
+            info["notification_settings"] = notificationsObject
+            completionHandler(info)
+        }
+    }
     
 }
 
@@ -205,4 +225,55 @@ public struct DeviceInfoService: DeviceInfoServiceContract {
     
     public init() { }
     
+}
+
+
+@available(iOSApplicationExtension 10.0, *)
+fileprivate extension UNNotificationSetting {
+
+    var key: String {
+        switch self {
+        case .notSupported:
+            return "notSupported"
+        case .disabled:
+            return "disabled"
+        case .enabled:
+            return "enabled"
+        }
+    }
+
+}
+
+
+@available(iOSApplicationExtension 10.0, *)
+fileprivate extension UNAuthorizationStatus {
+
+    var key: String {
+        switch self {
+        case .authorized:
+            return "authorized"
+        case .denied:
+            return "denied"
+        case .notDetermined:
+            return "notDetermined"
+        }
+    }
+
+}
+
+
+@available(iOSApplicationExtension 10.0, *)
+fileprivate extension UNAlertStyle {
+
+    var key: String {
+        switch self {
+        case .alert:
+            return "alert"
+        case .banner:
+            return "banner"
+        case .none:
+            return "none"
+        }
+    }
+
 }

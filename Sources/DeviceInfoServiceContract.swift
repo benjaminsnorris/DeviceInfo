@@ -27,7 +27,10 @@ public protocol DeviceInfoServiceContract {
     var screenHeight: CGFloat { get }
     var screenWidth: CGFloat { get }
     var timezone: String { get }
-    
+
     func formattedToken(from deviceToken: Data) -> String
     func deviceInfoDictionary(with token: String?, latitude: Double?, longitude: Double?, nullForMissingValues: Bool) -> [String: Any]
+
+    @available(iOSApplicationExtension 10.0, *)
+    func deviceAndSettingsInfo(with token: String?, latitude: Double?, longitude: Double?, nullForMissingValues: Bool, completionHandler: @escaping (_ infoDictionary: [String: Any]) -> ())
 }
