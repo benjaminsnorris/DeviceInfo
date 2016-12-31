@@ -67,10 +67,10 @@ public extension DeviceInfoServiceContract {
         return shortVersion
     }
     
-    /// e.g. "Lister version 1.0.1 (142)"
+    /// e.g. "Lister 1.0.1.142"
     public var appNameWithVersion: String {
         guard let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String else { return "Unnamed App" }
-        return "\(appName) version \(appVersion) (\(appBuildNumber))"
+        return "\(appName) \(appBuildNumber)"
     }
     
     /// User-facing display name of device, e.g. "John's iPhone"
