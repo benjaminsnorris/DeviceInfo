@@ -58,7 +58,7 @@ public extension DeviceInfoServiceContract {
     
     /// e.g. "Lister"
     public var appName: String {
-        return Bundle.main.infoDictionary!["CFBundleName"] as! String
+        return Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
     }
     
     /// e.g. "1.0.1"
@@ -69,7 +69,6 @@ public extension DeviceInfoServiceContract {
     
     /// e.g. "Lister 1.0.1.142"
     public var appNameWithVersion: String {
-        guard let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String else { return "Unnamed App" }
         return "\(appName) \(appBuildNumber)"
     }
     
