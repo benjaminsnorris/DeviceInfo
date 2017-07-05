@@ -13,6 +13,11 @@
 		709C3E6A1CA5BC090058CCE8 /* DeviceInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */; };
 		709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */; };
 		70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */; };
+		E7955E651F0D8F4300B8E7ED /* LaunchCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */; };
+		E7955E671F0D8F4700B8E7ED /* DeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 709C3E4D1CA5BA890058CCE8 /* DeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7955E691F0D90C400B8E7ED /* DeviceInfoServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */; };
+		E7955E6A1F0D90F700B8E7ED /* DeviceInfoServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */; };
+		E7955E6D1F0D914200B8E7ED /* DeviceInfoService+Watch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7955E6B1F0D913C00B8E7ED /* DeviceInfoService+Watch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,9 @@
 		709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoService.swift; sourceTree = "<group>"; };
 		709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCountService.swift; sourceTree = "<group>"; };
+		E7955E5C1F0D8F1300B8E7ED /* DeviceInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DeviceInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoServiceContract.swift; sourceTree = "<group>"; };
+		E7955E6B1F0D913C00B8E7ED /* DeviceInfoService+Watch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DeviceInfoService+Watch.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +59,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				709C3E551CA5BA890058CCE8 /* DeviceInfo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7955E581F0D8F1300B8E7ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +87,7 @@
 			children = (
 				709C3E4A1CA5BA890058CCE8 /* DeviceInfo.framework */,
 				709C3E541CA5BA890058CCE8 /* DeviceInfoTests.xctest */,
+				E7955E5C1F0D8F1300B8E7ED /* DeviceInfo.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */,
+				E7955E6B1F0D913C00B8E7ED /* DeviceInfoService+Watch.swift */,
+				E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */,
 				70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */,
 				709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */,
 				70C52BCC1D5221CA00FD2B57 /* Supporting Files */,
@@ -113,6 +131,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				709C3E4E1CA5BA890058CCE8 /* DeviceInfo.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7955E591F0D8F1300B8E7ED /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7955E671F0D8F4700B8E7ED /* DeviceInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +181,24 @@
 			productReference = 709C3E541CA5BA890058CCE8 /* DeviceInfoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E7955E5B1F0D8F1300B8E7ED /* DeviceInfo-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7955E631F0D8F1300B8E7ED /* Build configuration list for PBXNativeTarget "DeviceInfo-watchOS" */;
+			buildPhases = (
+				E7955E571F0D8F1300B8E7ED /* Sources */,
+				E7955E581F0D8F1300B8E7ED /* Frameworks */,
+				E7955E591F0D8F1300B8E7ED /* Headers */,
+				E7955E5A1F0D8F1300B8E7ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DeviceInfo-watchOS";
+			productName = "DeviceInfo-watchOS";
+			productReference = E7955E5C1F0D8F1300B8E7ED /* DeviceInfo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -173,6 +217,11 @@
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
 					};
+					E7955E5B1F0D8F1300B8E7ED = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = M9Y5WF87VL;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 709C3E441CA5BA890058CCE8 /* Build configuration list for PBXProject "DeviceInfo" */;
@@ -189,6 +238,7 @@
 			targets = (
 				709C3E491CA5BA890058CCE8 /* DeviceInfo */,
 				709C3E531CA5BA890058CCE8 /* DeviceInfoTests */,
+				E7955E5B1F0D8F1300B8E7ED /* DeviceInfo-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -208,6 +258,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7955E5A1F0D8F1300B8E7ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -216,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */,
+				E7955E691F0D90C400B8E7ED /* DeviceInfoServiceContract.swift in Sources */,
 				709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */,
 				709C3E6A1CA5BC090058CCE8 /* DeviceInfoService.swift in Sources */,
 			);
@@ -226,6 +284,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				709C3E5A1CA5BA890058CCE8 /* DeviceInfoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7955E571F0D8F1300B8E7ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7955E651F0D8F4300B8E7ED /* LaunchCountService.swift in Sources */,
+				E7955E6A1F0D90F700B8E7ED /* DeviceInfoServiceContract.swift in Sources */,
+				E7955E6D1F0D914200B8E7ED /* DeviceInfoService+Watch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +472,58 @@
 			};
 			name = Release;
 		};
+		E7955E611F0D8F1300B8E7ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = M9Y5WF87VL;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "design.bsn.DeviceInfo-watchOS";
+				PRODUCT_NAME = DeviceInfo;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Debug;
+		};
+		E7955E621F0D8F1300B8E7ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = M9Y5WF87VL;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "design.bsn.DeviceInfo-watchOS";
+				PRODUCT_NAME = DeviceInfo;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -433,6 +553,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E7955E631F0D8F1300B8E7ED /* Build configuration list for PBXNativeTarget "DeviceInfo-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7955E611F0D8F1300B8E7ED /* Debug */,
+				E7955E621F0D8F1300B8E7ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

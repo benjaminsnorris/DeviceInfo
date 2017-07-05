@@ -5,18 +5,19 @@
  |  ‾        ‾        ‾
  */
 
-import UIKit
+import Foundation
+import WatchKit
 
 public extension DeviceInfoServiceContract {
     
     /// e.g. "iPhone OS"
     public var osName: String {
-        return UIDevice.current.systemName
+        return WKInterfaceDevice.current().systemName
     }
     
     /// e.g. "9.3"
     public var osVersion: String {
-        return UIDevice.current.systemVersion
+        return WKInterfaceDevice.current().systemVersion
     }
     
     /// e.g. "142" or "1.0.1.142"
@@ -32,7 +33,7 @@ public extension DeviceInfoServiceContract {
     
     /// e.g. "Lister"
     public var appName: String {
-        return Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
+        return Bundle.main.infoDictionary!["CFBundleName"] as! String
     }
     
     /// e.g. "1.0.1"
@@ -43,43 +44,34 @@ public extension DeviceInfoServiceContract {
     
     /// e.g. "Lister 1.0.1.142"
     public var appNameWithVersion: String {
+        guard let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String else { return "Unnamed App" }
         return "\(appName) \(appBuildNumber)"
     }
     
-    /// User-facing display name of device, e.g. "John's iPhone"
+    /// User-facing display name of device, e.g. "John's Apple Watch"
     var deviceDisplayName: String {
-        return UIDevice.current.name
+        return WKInterfaceDevice.current().name
     }
     
     /// User-facing name of device, e.g. "iPhone 6S Plus"
     public var deviceModelName: String {
-        return UIDevice.current.modelName
+        return WKInterfaceDevice.current().model
     }
     
     /// Identifier of device model, e.g. "iPhone8,2"
     public var deviceType: String {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .unspecified:
-            return "Unspecified"
-        case .phone:
-            return "iPhone"
-        case .pad:
-            return "iPad"
-        case .tv:
-            return "Apple TV"
-        case .carPlay:
-            return "CarPlay"
-        }
+        return "Apple Watch"
     }
     
     /// Identifier of device model, e.g. "iPhone8,2" (Same as `deviceType`)
     public var deviceVersion: String {
-        return UIDevice.current.modelIdentifier
+        return WKInterfaceDevice.current().model
     }
     
     /// Unique identifier of device, same across apps from a single vendor
     public var deviceIdentifier: String {
-        return UIDevice.current.identifierForVendor!.uuidString
+        // TODO: Get a real identifier for the watch
+        return UUID().uuidString
     }
     
     /// The first preferred language of the user, e.g. "en-US"
@@ -99,17 +91,17 @@ public extension DeviceInfoServiceContract {
     
     /// Pixel density of device screen, e.g. "3.0"
     public var screenDensity: CGFloat {
-        return UIScreen.main.scale
+        return WKInterfaceDevice.current().screenScale
     }
     
     /// Height of screen in points, e.g. "736.0"
     public var screenHeight: CGFloat {
-        return UIScreen.main.bounds.height
+        return WKInterfaceDevice.current().screenBounds.height
     }
     
     /// Width of screen in points, e.g. "414.0"
     public var screenWidth: CGFloat {
-        return UIScreen.main.bounds.width
+        return WKInterfaceDevice.current().screenBounds.width
     }
     
     /// Name of user's current time zone, e.g. "American/Denver"
@@ -122,7 +114,7 @@ public extension DeviceInfoServiceContract {
      remote notifications.
      
      - parameter deviceToken: Data object received when registering for
-        remote notifications
+     remote notifications
      
      - returns: Formatted token string
      */
@@ -136,18 +128,18 @@ public extension DeviceInfoServiceContract {
      information
      
      - Parameters:
-         - token: Optional string to include in dictionary, usually processed from device token data
-         - latitude: Optional if obtained from user
-         - longitude: Optional if obtained from user
-         - nullForMissingValues: Flag for missing values to omit or set as `NSNull()`
+     - token: Optional string to include in dictionary, usually processed from device token data
+     - latitude: Optional if obtained from user
+     - longitude: Optional if obtained from user
+     - nullForMissingValues: Flag for missing values to omit or set as `NSNull()`
      */
     public func deviceInfoDictionary(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false) -> [String: Any] {
         var object: [String: Any] = [
             "name": deviceDisplayName,
-        ]
+            ]
         var locationObject: [String: Any] = [
             "timezone": timezone,
-        ]
+            ]
         if let latitude = latitude {
             locationObject["lat"] = latitude
         } else if nullForMissingValues {
@@ -181,7 +173,7 @@ public extension DeviceInfoServiceContract {
             "version": appVersion,
             "build": appBuildNumber,
             "identifier": appIdentifier,
-        ]
+            ]
         if let token = token {
             appObject["token"] = token
         } else if nullForMissingValues {
