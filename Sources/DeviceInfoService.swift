@@ -33,7 +33,7 @@ public extension DeviceInfoServiceContract {
     
     /// e.g. "Lister"
     public var appName: String {
-        return Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
+        return Bundle.main.infoDictionary!["CFBundleDisplayName"] as? String ?? Bundle.main.infoDictionary!["CFBundleName"] as! String
     }
     
     /// e.g. "1.0.1"
