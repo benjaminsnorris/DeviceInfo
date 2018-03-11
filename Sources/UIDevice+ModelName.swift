@@ -60,12 +60,20 @@ private let DeviceList = [
     "iPhone9,1": "iPhone 7", "iPhone9,3": "iPhone 7",
     /* iPhone 7 Plus */
     "iPhone9,2": "iPhone 7 Plus", "iPhone9,4": "iPhone 7 Plus",
+    /* iPhone 8 */
+    "iPhone10,1": "iPhone 8", "iPhone10,4": "iPhone 8",
+    /* iPhone 8 Plus */
+    "iPhone10,2": "iPhone 8 Plus", "iPhone10,5": "iPhone 8 Plus",
+    /* iPhone X */
+    "iPhone10,3": "iPhone X", "iPhone10,6": "iPhone X",
     /* iPad 2 */
     "iPad2,1": "iPad 2", "iPad2,2": "iPad 2", "iPad2,3": "iPad 2", "iPad2,4": "iPad 2",
     /* iPad 3 */
     "iPad3,1": "iPad 3", "iPad3,2": "iPad 3", "iPad3,3": "iPad 3",
     /* iPad 4 */
     "iPad3,4": "iPad 4", "iPad3,5": "iPad 4", "iPad3,6": "iPad 4",
+    /* iPad 5th Generation */
+    "iPad6,11": "iPad 5", "iPad6,12": "iPad 5",
     /* iPad Air */
     "iPad4,1": "iPad Air", "iPad4,2": "iPad Air", "iPad4,3": "iPad Air",
     /* iPad Air 2 */
@@ -79,9 +87,13 @@ private let DeviceList = [
     /* iPad Mini 4 */
     "iPad5,1": "iPad Mini", "iPad5,2": "iPad Mini",
     /* iPad Pro (12.9 inch) */
-    "iPad6,7": "iPad Pro (12.9 inch)", "iPad6,8": "iPad Pro (12.9 inch)",
+    "iPad6,7": "iPad Pro (12.9 inch) 2nd Generation", "iPad6,8": "iPad Pro (12.9 inch) 2nd Generation",
+    /* iPad Pro (12.9 inch) 2nd Generation */
+    "iPad7,1": "iPad Pro (12.9 inch)", "iPad7,2": "iPad Pro (12.9 inch)",
     /* iPad Pro (9.7 inch) */
     "iPad6,3": "iPad Pro (9.7 inch)", "iPad6,4": "iPad Pro (9.7 inch)",
+    /* iPad Pro (10.5 inch) */
+    "iPad7,3": "iPad Pro (10.5 inch)", "iPad7,4": "iPad Pro (10.5 inch)",
     /* Simulator */
     "x86_64": "Simulator", "i386": "Simulator"
 ]
