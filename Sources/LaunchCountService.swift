@@ -69,7 +69,7 @@ private extension LaunchCountService {
     
     func launchCountsForAllVersions() -> [String: Int] {
         if useCloudKit {
-            let store = NSUbiquitousKeyValueStore.default
+            let store = NSUbiquitousKeyValueStore.default()
             return store.object(forKey: LaunchCountService.versionsKey) as? [String: Int] ?? [:]
         } else {
             let defaults: UserDefaults
@@ -88,7 +88,7 @@ private extension LaunchCountService {
     
     @discardableResult func incrementLaunchCount(_ version: String) -> Bool {
         if useCloudKit {
-            let store = NSUbiquitousKeyValueStore.default
+            let store = NSUbiquitousKeyValueStore.default()
             var updatedVersionsCounts = launchCountsForAllVersions()
             let updatedCount = 1 + launchCount(for: version)
             updatedVersionsCounts[version] = updatedCount
