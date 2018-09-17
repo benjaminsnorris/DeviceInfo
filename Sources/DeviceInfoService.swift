@@ -256,6 +256,8 @@ fileprivate extension UNAuthorizationStatus {
             return "denied"
         case .notDetermined:
             return "notDetermined"
+        case .provisional:
+            return "provisional"
         }
     }
 
