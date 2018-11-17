@@ -6,6 +6,7 @@
  */
 
 import Foundation
+import CloudKit
 
 public struct LaunchCountService {
     
@@ -31,6 +32,14 @@ public struct LaunchCountService {
     let sharedAppGroupContainer: String?
     var deviceInfoService: DeviceInfoServiceContract = DeviceInfoService()
     var useCloudKit = false
+    var isCloudKitAvailable = false
+    
+    
+    // MARK: - Computed properties
+    
+    var shouldUseCloudKit: Bool {
+        return useCloudKit && isCloudKitAvailable
+    }
     
     
     // MARK: - Constants
@@ -45,11 +54,13 @@ public struct LaunchCountService {
         - sharedAppGroupContainer: Optional identifier to use a shared
         `UserDefaults` suite for storing launch information.
         - useCloudKit: Flag to store values in `NSUbiquitousKeyValueStore`
-        instead of `UserDefaults`
+        instead of `UserDefaults` if available
      */
     public init(sharedAppGroupContainer: String? = nil, useCloudKit: Bool = false) {
         self.sharedAppGroupContainer = sharedAppGroupContainer
         self.useCloudKit = useCloudKit
+        let token = FileManager.default.ubiquityIdentityToken
+        isCloudKitAvailable = token != nil
     }
     
     
@@ -68,7 +79,7 @@ public struct LaunchCountService {
 private extension LaunchCountService {
     
     func launchCountsForAllVersions() -> [String: Int] {
-        if useCloudKit {
+        if shouldUseCloudKit {
             let store = NSUbiquitousKeyValueStore.default
             return store.object(forKey: LaunchCountService.versionsKey) as? [String: Int] ?? [:]
         } else {
@@ -87,7 +98,7 @@ private extension LaunchCountService {
     }
     
     @discardableResult func incrementLaunchCount(_ version: String) -> Bool {
-        if useCloudKit {
+        if shouldUseCloudKit {
             let store = NSUbiquitousKeyValueStore.default
             var updatedVersionsCounts = launchCountsForAllVersions()
             let updatedCount = 1 + launchCount(for: version)
