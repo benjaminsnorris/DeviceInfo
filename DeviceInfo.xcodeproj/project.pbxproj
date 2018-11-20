@@ -13,6 +13,7 @@
 		709C3E6A1CA5BC090058CCE8 /* DeviceInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */; };
 		709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */; };
 		70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */; };
+		E71D941821A43FCD000F0674 /* ReviewPromptCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D941721A43FCD000F0674 /* ReviewPromptCountService.swift */; };
 		E7955E651F0D8F4300B8E7ED /* LaunchCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */; };
 		E7955E671F0D8F4700B8E7ED /* DeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 709C3E4D1CA5BA890058CCE8 /* DeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7955E691F0D90C400B8E7ED /* DeviceInfoServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */; };
@@ -41,6 +42,7 @@
 		709C3E691CA5BC090058CCE8 /* DeviceInfoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoService.swift; sourceTree = "<group>"; };
 		709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchCountService.swift; sourceTree = "<group>"; };
+		E71D941721A43FCD000F0674 /* ReviewPromptCountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptCountService.swift; sourceTree = "<group>"; };
 		E7955E5C1F0D8F1300B8E7ED /* DeviceInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DeviceInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoServiceContract.swift; sourceTree = "<group>"; };
 		E7955E6B1F0D913C00B8E7ED /* DeviceInfoService+Watch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DeviceInfoService+Watch.swift"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				E7955E6B1F0D913C00B8E7ED /* DeviceInfoService+Watch.swift */,
 				E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */,
 				70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */,
+				E71D941721A43FCD000F0674 /* ReviewPromptCountService.swift */,
 				709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */,
 				70C52BCC1D5221CA00FD2B57 /* Supporting Files */,
 			);
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */,
+				E71D941821A43FCD000F0674 /* ReviewPromptCountService.swift in Sources */,
 				E7955E691F0D90C400B8E7ED /* DeviceInfoServiceContract.swift in Sources */,
 				709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */,
 				709C3E6A1CA5BC090058CCE8 /* DeviceInfoService.swift in Sources */,

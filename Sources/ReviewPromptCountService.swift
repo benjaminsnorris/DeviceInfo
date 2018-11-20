@@ -4,24 +4,27 @@
  | | |  ‾‾‾‾| |‾‾‾‾  | |
  |  ‾        ‾        ‾
  */
+//
+//  Copyright © 2018 BSN Design. All rights reserved.
+//
 
 import Foundation
 import CloudKit
 
-public struct LaunchCountService {
+public struct ReviewPromptCountService {
     
     // MARK: - Public properties
     
-    /// Number of launches recorded on device for current app version ("1.0.1")
-    public var launchCountForCurrentVersion: Int {
-        return launchCount(for: deviceInfoService.appVersion)
+    /// Number of review prompts recorded on device for current app version ("1.0.1")
+    public var reviewPromptCountForCurrentVersion: Int {
+        return reviewPromptCount(for: deviceInfoService.appVersion)
     }
     
-    /// Number of launches recorded on device across all app versions
-    public var launchCountForAllVersions: Int {
-        let versionCounts = launchCountsForAllVersions()
-        guard !versionCounts.isEmpty else { return 0 }
-        let allCounts = versionCounts.map { $0.1 }
+    /// Number of review prompts recorded on device across all app versions
+    public var reviewPromptCountForAllVersions: Int {
+        let reviewPromptCounts = reviewPromptCountsForAllVersions()
+        guard !reviewPromptCounts.isEmpty else { return 0 }
+        let allCounts = reviewPromptCounts.map { $0.1 }
         let total = allCounts.reduce(0, +)
         return total
     }
@@ -47,18 +50,18 @@ public struct LaunchCountService {
     enum Keys {
         fileprivate static var versions: String { return #function }
     }
-
+    
     
     // MARK: - Initializers
     
     /**
      - parameters:
-        - deviceInfoService: Service to provide information about current
-        version number
-        - sharedAppGroupContainer: Optional identifier to use a shared
-        `UserDefaults` suite for storing launch information.
-        - useCloudKit: Flag to store values in `NSUbiquitousKeyValueStore`
-        instead of `UserDefaults` if available
+     - deviceInfoService: Service to provide information about current
+     version number
+     - sharedAppGroupContainer: Optional identifier to use a shared
+     `UserDefaults` suite for storing launch information.
+     - useCloudKit: Flag to store values in `NSUbiquitousKeyValueStore`
+     instead of `UserDefaults` if available
      */
     public init(sharedAppGroupContainer: String? = nil, useCloudKit: Bool = false, deviceInfoService: DeviceInfoServiceContract = DeviceInfoService()) {
         self.deviceInfoService = deviceInfoService
@@ -67,23 +70,23 @@ public struct LaunchCountService {
         let token = FileManager.default.ubiquityIdentityToken
         isCloudKitAvailable = token != nil
     }
-    
+
     
     // MARK: - Public functions
     
-    /// Increment launch count for current app version ("1.0.1")
-    @discardableResult public func incrementLaunchCountForCurrentVersion() -> Bool {
-        return incrementLaunchCount(for: deviceInfoService.appVersion)
+    /// Increment review prompt count for current app version ("1.0.1")
+    @discardableResult public func incrementReviewPromptCountForCurrentVersion() -> Bool {
+        return incrementReviewPromptCount(deviceInfoService.appVersion)
     }
-
+    
 }
 
 
 // MARK: - Private functions
 
-private extension LaunchCountService {
+private extension ReviewPromptCountService {
     
-    func launchCountsForAllVersions() -> [String: Int] {
+    func reviewPromptCountsForAllVersions() -> [String: Int] {
         if shouldUseCloudKit {
             let store = NSUbiquitousKeyValueStore.default
             return store.object(forKey: Keys.versions) as? [String: Int] ?? [:]
@@ -98,17 +101,17 @@ private extension LaunchCountService {
         }
     }
     
-    func launchCount(for version: String) -> Int {
-        return launchCountsForAllVersions()[version] ?? 0
+    func reviewPromptCount(for version: String) -> Int {
+        return reviewPromptCountsForAllVersions()[version] ?? 0
     }
     
-    @discardableResult func incrementLaunchCount(for version: String) -> Bool {
+    @discardableResult func incrementReviewPromptCount(_ version: String) -> Bool {
         if shouldUseCloudKit {
             let store = NSUbiquitousKeyValueStore.default
-            var updatedVersionsCounts = launchCountsForAllVersions()
-            let updatedCount = 1 + launchCount(for: version)
-            updatedVersionsCounts[version] = updatedCount
-            store.set(updatedVersionsCounts, forKey: Keys.versions)
+            var updatedReviewPromptCounts = reviewPromptCountsForAllVersions()
+            let updatedCount = 1 + reviewPromptCount(for: version)
+            updatedReviewPromptCounts[version] = updatedCount
+            store.set(updatedReviewPromptCounts, forKey: Keys.versions)
         } else {
             let defaults: UserDefaults
             if let sharedDefaults = UserDefaults(suiteName: sharedAppGroupContainer) {
@@ -116,10 +119,10 @@ private extension LaunchCountService {
             } else {
                 defaults = UserDefaults.standard
             }
-            var updatedVersionsCounts = launchCountsForAllVersions()
-            let updatedCount = 1 + launchCount(for: version)
-            updatedVersionsCounts[version] = updatedCount
-            defaults.set(updatedVersionsCounts, forKey: Keys.versions)
+            var updatedReviewPromptCounts = reviewPromptCountsForAllVersions()
+            let updatedCount = 1 + reviewPromptCount(for: version)
+            updatedReviewPromptCounts[version] = updatedCount
+            defaults.set(updatedReviewPromptCounts, forKey: Keys.versions)
         }
         return true
     }
