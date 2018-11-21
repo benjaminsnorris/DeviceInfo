@@ -48,7 +48,7 @@ public struct ReviewPromptCountService {
     // MARK: - Constants
     
     enum Keys {
-        fileprivate static var versions: String { return #function }
+        fileprivate static var reviewPromptVersions: String { return #function }
     }
     
     
@@ -89,7 +89,7 @@ private extension ReviewPromptCountService {
     func reviewPromptCountsForAllVersions() -> [String: Int] {
         if shouldUseCloudKit {
             let store = NSUbiquitousKeyValueStore.default
-            return store.object(forKey: Keys.versions) as? [String: Int] ?? [:]
+            return store.object(forKey: Keys.reviewPromptVersions) as? [String: Int] ?? [:]
         } else {
             let defaults: UserDefaults
             if let sharedDefaults = UserDefaults(suiteName: sharedAppGroupContainer) {
@@ -97,7 +97,7 @@ private extension ReviewPromptCountService {
             } else {
                 defaults = UserDefaults.standard
             }
-            return defaults.object(forKey: Keys.versions) as? [String: Int] ?? [:]
+            return defaults.object(forKey: Keys.reviewPromptVersions) as? [String: Int] ?? [:]
         }
     }
     
@@ -111,7 +111,7 @@ private extension ReviewPromptCountService {
             var updatedReviewPromptCounts = reviewPromptCountsForAllVersions()
             let updatedCount = 1 + reviewPromptCount(for: version)
             updatedReviewPromptCounts[version] = updatedCount
-            store.set(updatedReviewPromptCounts, forKey: Keys.versions)
+            store.set(updatedReviewPromptCounts, forKey: Keys.reviewPromptVersions)
         } else {
             let defaults: UserDefaults
             if let sharedDefaults = UserDefaults(suiteName: sharedAppGroupContainer) {
@@ -122,7 +122,7 @@ private extension ReviewPromptCountService {
             var updatedReviewPromptCounts = reviewPromptCountsForAllVersions()
             let updatedCount = 1 + reviewPromptCount(for: version)
             updatedReviewPromptCounts[version] = updatedCount
-            defaults.set(updatedReviewPromptCounts, forKey: Keys.versions)
+            defaults.set(updatedReviewPromptCounts, forKey: Keys.reviewPromptVersions)
         }
         return true
     }
