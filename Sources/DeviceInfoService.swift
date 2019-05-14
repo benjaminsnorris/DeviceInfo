@@ -11,39 +11,39 @@ import UserNotifications
 public extension DeviceInfoServiceContract {
     
     /// e.g. "iPhone OS"
-    public var osName: String {
+    var osName: String {
         return UIDevice.current.systemName
     }
     
     /// e.g. "9.3"
-    public var osVersion: String {
+    var osVersion: String {
         return UIDevice.current.systemVersion
     }
     
     /// e.g. "142" or "1.0.1.142"
-    public var appBuildNumber: String {
+    var appBuildNumber: String {
         guard let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String else { return "Unknown" }
         return version
     }
     
     /// e.g. "com.example.app"
-    public var appIdentifier: String {
+    var appIdentifier: String {
         return Bundle.main.bundleIdentifier!
     }
     
     /// e.g. "Lister"
-    public var appName: String {
+    var appName: String {
         return Bundle.main.infoDictionary!["CFBundleDisplayName"] as? String ?? Bundle.main.infoDictionary!["CFBundleName"] as! String
     }
     
     /// e.g. "1.0.1"
-    public var appVersion: String {
+    var appVersion: String {
         guard let shortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "Unknown" }
         return shortVersion
     }
     
     /// e.g. "Lister 1.0.1.142"
-    public var appNameWithVersion: String {
+    var appNameWithVersion: String {
         return "\(appName) \(appBuildNumber)"
     }
     
@@ -53,12 +53,12 @@ public extension DeviceInfoServiceContract {
     }
     
     /// User-facing name of device, e.g. "iPhone 6S Plus"
-    public var deviceModelName: String {
+    var deviceModelName: String {
         return UIDevice.current.modelName
     }
     
     /// Identifier of device model, e.g. "iPhone8,2"
-    public var deviceType: String {
+    var deviceType: String {
         switch UIDevice.current.userInterfaceIdiom {
         case .unspecified:
             return "Unspecified"
@@ -74,22 +74,22 @@ public extension DeviceInfoServiceContract {
     }
     
     /// Identifier of device model, e.g. "iPhone8,2" (Same as `deviceType`)
-    public var deviceVersion: String {
+    var deviceVersion: String {
         return UIDevice.current.modelIdentifier
     }
     
     /// Unique identifier of device, same across apps from a single vendor
-    public var deviceIdentifier: String {
+    var deviceIdentifier: String {
         return UIDevice.current.identifierForVendor!.uuidString
     }
     
     /// The first preferred language of the user, e.g. "en-US"
-    public var language: String {
+    var language: String {
         return Locale.preferredLanguages.first!
     }
     
     /// Identifier of the user's current locale, e.g. "en_US"
-    public var locale: String {
+    var locale: String {
         return Locale.current.identifier
     }
     
@@ -99,22 +99,22 @@ public extension DeviceInfoServiceContract {
     }
     
     /// Pixel density of device screen, e.g. "3.0"
-    public var screenDensity: CGFloat {
+    var screenDensity: CGFloat {
         return UIScreen.main.scale
     }
     
     /// Height of screen in points, e.g. "736.0"
-    public var screenHeight: CGFloat {
+    var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
     }
     
     /// Width of screen in points, e.g. "414.0"
-    public var screenWidth: CGFloat {
+    var screenWidth: CGFloat {
         return UIScreen.main.bounds.width
     }
     
     /// Name of user's current time zone, e.g. "American/Denver"
-    public var timezone: String {
+    var timezone: String {
         return Calendar.current.timeZone.identifier
     }
     
@@ -127,7 +127,7 @@ public extension DeviceInfoServiceContract {
      
      - returns: Formatted token string
      */
-    public func formattedToken(from deviceToken: Data) -> String {
+    func formattedToken(from deviceToken: Data) -> String {
         return deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
     }
     
@@ -142,7 +142,7 @@ public extension DeviceInfoServiceContract {
          - longitude: Optional if obtained from user
          - nullForMissingValues: Flag for missing values to omit or set as `NSNull()`
      */
-    public func deviceInfoDictionary(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false) -> [String: Any] {
+    func deviceInfoDictionary(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false) -> [String: Any] {
         var object: [String: Any] = [
             "name": deviceDisplayName,
         ]
@@ -200,7 +200,7 @@ public extension DeviceInfoServiceContract {
     }
 
     @available(iOSApplicationExtension 10.0, *)
-    public func deviceAndSettingsInfo(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false, completionHandler: @escaping (_ infoDictionary: [String: Any]) -> ()) {
+    func deviceAndSettingsInfo(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false, completionHandler: @escaping (_ infoDictionary: [String: Any]) -> ()) {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             var info = self.deviceInfoDictionary(with: token, latitude: latitude, longitude: longitude, nullForMissingValues: nullForMissingValues)
             let notificationsObject: [String: Any] = [
