@@ -213,11 +213,12 @@
 				TargetAttributes = {
 					709C3E491CA5BA890058CCE8 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = "";
 					};
 					709C3E531CA5BA890058CCE8 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0920;
+						DevelopmentTeam = M9Y5WF87VL;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					E7955E5B1F0D8F1300B8E7ED = {
@@ -473,7 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = M9Y5WF87VL;
 				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/DeviceInfoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = design.bsn.DeviceInfoTests;
@@ -488,7 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = M9Y5WF87VL;
 				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/DeviceInfoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = design.bsn.DeviceInfoTests;
