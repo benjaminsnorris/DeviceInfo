@@ -190,6 +190,16 @@ public extension DeviceInfoServiceContract {
         return object
     }
     
+    // To be honest, I don't know why this is required here. The availability
+    // tag should prevent this from being required. So the implementation is
+    // intentionally simplistic.
+    
+    @available(iOSApplicationExtension 10.0, *)
+    public func deviceAndSettingsInfo(with token: String?, latitude: Double? = nil, longitude: Double? = nil, nullForMissingValues: Bool = false, completionHandler: @escaping (_ infoDictionary: [String: Any]) -> ()) {
+        let info = deviceInfoDictionary(with: token, latitude: latitude, longitude: longitude, nullForMissingValues: nullForMissingValues)
+        completionHandler(info)
+    }
+
 }
 
 

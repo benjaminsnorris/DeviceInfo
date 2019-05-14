@@ -14,7 +14,6 @@
 		709C3E6C1CA5BC860058CCE8 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C3E6B1CA5BC860058CCE8 /* UIDevice+ModelName.swift */; };
 		70C52BCB1D52219900FD2B57 /* LaunchCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */; };
 		E71D941821A43FCD000F0674 /* ReviewPromptCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D941721A43FCD000F0674 /* ReviewPromptCountService.swift */; };
-		E7955E651F0D8F4300B8E7ED /* LaunchCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C52BCA1D52219900FD2B57 /* LaunchCountService.swift */; };
 		E7955E671F0D8F4700B8E7ED /* DeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 709C3E4D1CA5BA890058CCE8 /* DeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7955E691F0D90C400B8E7ED /* DeviceInfoServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */; };
 		E7955E6A1F0D90F700B8E7ED /* DeviceInfoServiceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7955E681F0D90C400B8E7ED /* DeviceInfoServiceContract.swift */; };
@@ -219,10 +218,10 @@
 					709C3E531CA5BA890058CCE8 = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
 					};
 					E7955E5B1F0D8F1300B8E7ED = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = M9Y5WF87VL;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -295,7 +294,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7955E651F0D8F4300B8E7ED /* LaunchCountService.swift in Sources */,
 				E7955E6A1F0D90F700B8E7ED /* DeviceInfoServiceContract.swift in Sources */,
 				E7955E6D1F0D914200B8E7ED /* DeviceInfoService+Watch.swift in Sources */,
 			);
@@ -474,10 +472,13 @@
 		709C3E621CA5BA890058CCE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/DeviceInfoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = design.bsn.DeviceInfoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -486,10 +487,13 @@
 		709C3E631CA5BA890058CCE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/DeviceInfoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = design.bsn.DeviceInfoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -504,7 +508,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = M9Y5WF87VL;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -530,7 +534,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = M9Y5WF87VL;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
