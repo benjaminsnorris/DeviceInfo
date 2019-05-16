@@ -70,6 +70,8 @@ public extension DeviceInfoServiceContract {
             return "Apple TV"
         case .carPlay:
             return "CarPlay"
+        @unknown default:
+            return "Unknown"
         }
     }
     
@@ -239,6 +241,8 @@ fileprivate extension UNNotificationSetting {
             return "disabled"
         case .enabled:
             return "enabled"
+        @unknown default:
+            return "unknown"
         }
     }
 
@@ -258,6 +262,8 @@ fileprivate extension UNAuthorizationStatus {
             return "notDetermined"
         case .provisional:
             return "provisional"
+        @unknown default:
+            return "unknown"
         }
     }
 
@@ -275,6 +281,8 @@ fileprivate extension UNAlertStyle {
             return "banner"
         case .none:
             return "none"
+        @unknown default:
+            return "unknown"
         }
     }
 
