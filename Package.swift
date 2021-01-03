@@ -5,9 +5,9 @@ import PackageDescription
 let package = Package(
     name: "DeviceInfo",
     platforms: [
-        .iOS(.v12),
-        .watchOS(.v7),
-        .tvOS(.v14),
+        .iOS("12.0"),
+        .watchOS("7.0"),
+        .tvOS("14.0"),
         .macOS(.v10_15)
     ],
     products: [
