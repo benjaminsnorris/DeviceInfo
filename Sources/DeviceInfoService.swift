@@ -70,6 +70,8 @@ public extension DeviceInfoServiceContract {
             return "Apple TV"
         case .carPlay:
             return "CarPlay"
+        case .mac:
+            return "Mac"
         @unknown default:
             return "Unknown"
         }
@@ -262,6 +264,8 @@ fileprivate extension UNAuthorizationStatus {
             return "notDetermined"
         case .provisional:
             return "provisional"
+        case .ephemeral:
+            return "ephemeral"
         @unknown default:
             return "unknown"
         }
