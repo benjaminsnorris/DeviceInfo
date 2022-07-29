@@ -23,9 +23,9 @@ public protocol DeviceInfoServiceContract {
     var language: String { get }
     var locale: String { get }
     var translation: String { get }
-    var screenDensity: CGFloat { get }
-    var screenHeight: CGFloat { get }
-    var screenWidth: CGFloat { get }
+    var screenDensity: Double { get }
+    var screenHeight: Double { get }
+    var screenWidth: Double { get }
     var timezone: String { get }
 
     func formattedToken(from deviceToken: Data) -> String

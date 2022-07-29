@@ -5,6 +5,8 @@
  |  ‾        ‾        ‾
  */
 
+import Foundation
+#if !os(macOS)
 import UIKit
 import UserNotifications
 
@@ -103,17 +105,17 @@ public extension DeviceInfoServiceContract {
     }
     
     /// Pixel density of device screen, e.g. "3.0"
-    var screenDensity: CGFloat {
+    var screenDensity: Double {
         return UIScreen.main.scale
     }
     
     /// Height of screen in points, e.g. "736.0"
-    var screenHeight: CGFloat {
+    var screenHeight: Double {
         return UIScreen.main.bounds.height
     }
     
     /// Width of screen in points, e.g. "414.0"
-    var screenWidth: CGFloat {
+    var screenWidth: Double {
         return UIScreen.main.bounds.width
     }
     
@@ -291,3 +293,5 @@ fileprivate extension UNAlertStyle {
     }
 
 }
+
+#endif

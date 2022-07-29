@@ -7,8 +7,7 @@ let package = Package(
     platforms: [
         .iOS("12.0"),
         .watchOS("7.0"),
-        .tvOS("14.0"),
-        .macOS(.v10_15)
+        .tvOS("14.0")
     ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
@@ -24,10 +23,10 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "DeviceInfoTests",
+            name: "DeviceInfo",
             dependencies: []),
         .testTarget(
-            name: "DeviceInfo",
+            name: "DeviceInfoTests",
             dependencies: ["DeviceInfo"]),
     ]
 )

@@ -6,6 +6,7 @@
  */
 
 import Foundation
+#if os(watchOS)
 import WatchKit
 
 public extension DeviceInfoServiceContract {
@@ -208,3 +209,5 @@ public struct DeviceInfoService: DeviceInfoServiceContract {
     public init() { }
     
 }
+
+#endif

@@ -5,6 +5,7 @@
  |  ‾        ‾        ‾
  */
 
+#if !os(macOS)
 import UIKit
 
 extension UIDevice {
@@ -163,3 +164,5 @@ private let DeviceList = [
     /* Simulator */
     "x86_64": "Simulator", "i386": "Simulator"
 ]
+
+#endif
